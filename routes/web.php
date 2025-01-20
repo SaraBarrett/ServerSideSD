@@ -7,11 +7,11 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function(){
-    return "<a href=". route('users.show')." >Clica aqui para veres todos os users</a>";
+    return view('home');
 })->name('home');
 
 Route::get('/users', function(){
-    return '<h1>Aqui vês todos os users</h1>';
+    return view('users.all_users');
 })->name('users.show');
 
 Route::get('/hello/{name}', function($name){
