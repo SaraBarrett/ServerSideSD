@@ -9,8 +9,17 @@ class HomeController extends Controller
     public function index(){
         $myVar = 'Hello World';
 
-        $contactInfo = ['nome', 'email'];
-
+        $contactInfo = $this->getContactInfo();
         return view('home', compact('myVar', 'contactInfo'));
+    }
+
+
+    private function getContactInfo(){
+        $contactInfo = [
+            'nome' => 'Sara Monteiro',
+            'email' => 'Sara@gmail.com'
+        ];
+
+        return  $contactInfo;
     }
 }
