@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -7,10 +8,7 @@ Route::get('/', function () {
 });
 
 // rota home
-Route::get('/home', function(){
-    return view('home');
-})->name('home');
-
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // rotas users
 //rota para no futuro carregar uma tabela com todos os users
