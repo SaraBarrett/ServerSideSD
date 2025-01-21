@@ -18,6 +18,11 @@ Route::get('/users', function(){
     return view('users.all_users');
 })->name('users.show');
 
+Route::get('/add-users', function(){
+    return view('users.add_users');
+})->name('users.add');
+
+
 
 //rota com paramentros
 Route::get('/hello/{name}', function($name){
@@ -26,7 +31,7 @@ Route::get('/hello/{name}', function($name){
 
 //rota fallback: cai aqui quando não encontra nenhuma rota com o url solicitado no frontend
 Route::fallback(function(){
-    return "<a href=". route('home')." >estás perdido volta aqui</a>";
+    return view('fallback');
 });
 
 
