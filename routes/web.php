@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -12,13 +13,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // rotas users
 //rota para no futuro carregar uma tabela com todos os users
-Route::get('/users', function(){
-    return view('users.all_users');
-})->name('users.show');
+Route::get('/users', [UserController:: class, 'allUsers'])->name('users.show');
 
-Route::get('/add-users', function(){
-    return view('users.add_users');
-})->name('users.add');
+Route::get('/add-users', [UserController:: class, 'addUsers'])->name('users.add');
 
 
 

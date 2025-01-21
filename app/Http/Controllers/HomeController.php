@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        return view('home');
+        $myVar = 'Hello World';
+
+        $contactInfo = ['nome', 'email'];
+
+        return view('home', compact('myVar', 'contactInfo'));
     }
 }
