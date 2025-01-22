@@ -12,6 +12,9 @@ class UserController extends Controller
         $cesaeInfo = $this->getCesaeInfo();
         $allContacts = $this->getContacts();
 
+        $contactPerson= DB::table('users')->where('name','Bruno')->first();
+
+
         //função para inserir um user na bd. corre quando chamamos a rota cuja presente função está associada
         //$this->insertUserIntoDB();
 
@@ -19,7 +22,7 @@ class UserController extends Controller
         $allUsers = $this->getAllUsersFromDB();
 
 
-        return view('users.all_users', compact('cesaeInfo', 'allContacts', 'allUsers'));
+        return view('users.all_users', compact('cesaeInfo', 'allContacts', 'allUsers', 'contactPerson'));
     }
 
     public function addUsers(){
@@ -68,8 +71,12 @@ class UserController extends Controller
     }
 
     protected function getAllUsersFromDB(){
+
         $users = Db::table('users')
+                ->whereNull('updated_at')
+                ->select('name', 'email', 'password', 'id')
                 ->get();
+
 
         return $users;
     }

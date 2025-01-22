@@ -1,6 +1,8 @@
 @extends('layouts.fo_layout')
 @section('content')
     <h1>Aqui vês todos os utilizadores</h1>
+
+    <h6>O contacto é {{ $contactPerson->name }} e o contacto é {{ $contactPerson->email }} </h6>
     <ul>
         <li>{{ $cesaeInfo['name'] }}</li>
     </ul>
