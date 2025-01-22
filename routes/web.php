@@ -18,7 +18,6 @@ Route::get('/users', [UserController:: class, 'allUsers'])->name('users.show');
 Route::get('/add-users', [UserController:: class, 'addUsers'])->name('users.add');
 
 
-
 //rota com paramentros
 Route::get('/hello/{name}', function($name){
     return '<h1>Hello</h1>'.$name;
@@ -36,3 +35,7 @@ Route::fallback(function(){
 
 //Notas:
 //os nomes das rotas servem para se identificar as mesmas dentro do código com uma "key", como por exemplo para chamar no href
+
+//rotas de aprendizagem
+//chama directamente a função inserir user na bd
+//Route::get('/insert-user', [UserController:: class, 'insertUserIntoDB'])->name('users.insert');
