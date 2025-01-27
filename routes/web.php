@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
@@ -22,6 +23,8 @@ Route::get('/add-users', [UserController:: class, 'addUsers'])->name('users.add'
 Route::get('/hello/{name}', function($name){
     return '<h1>Hello</h1>'.$name;
 });
+
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.all');
 
 //rota fallback: cai aqui quando não encontra nenhuma rota com o url solicitado no frontend
 Route::fallback(function(){

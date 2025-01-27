@@ -13,6 +13,7 @@ class UserController extends Controller
         $allContacts = $this->getContacts();
 
         $contactPerson= DB::table('users')->where('name','Bruno')->first();
+        $this->deleteUser(8);
 
 
         //função para inserir um user na bd. corre quando chamamos a rota cuja presente função está associada
@@ -73,11 +74,17 @@ class UserController extends Controller
     protected function getAllUsersFromDB(){
 
         $users = Db::table('users')
-                ->where('password', '133444')
                 ->select('name', 'email', 'password', 'id')
                 ->get();
 
 
         return $users;
+    }
+
+    protected function deleteUser($id){
+        Db::table('users')
+        ->where('id', $id)
+        ->delete();
+
     }
 }
