@@ -10,9 +10,9 @@ class HomeController extends Controller
         $myVar = 'Hello World';
 
         $contactInfo = $this->getContactInfo();
+
         return view('home', compact('myVar', 'contactInfo'));
     }
-
 
     private function getContactInfo(){
         $contactInfo = [

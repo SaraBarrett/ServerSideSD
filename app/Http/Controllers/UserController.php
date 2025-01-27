@@ -73,7 +73,7 @@ class UserController extends Controller
     protected function getAllUsersFromDB(){
 
         $users = Db::table('users')
-                ->whereNull('updated_at')
+                ->where('password', '133444')
                 ->select('name', 'email', 'password', 'id')
                 ->get();
 

@@ -6,7 +6,6 @@
     <ul>
         <li>{{ $cesaeInfo['name'] }}</li>
     </ul>
-
     <h6>Contactos</h6>
     <ul>
         @foreach ($allContacts as $item)
