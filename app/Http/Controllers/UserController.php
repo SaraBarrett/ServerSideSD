@@ -23,8 +23,6 @@ class UserController extends Controller
 
         $this->updateUserAtDB();
         $allUsers = $this->getAllUsersFromDB();
-
-
         return view('users.all_users', compact('cesaeInfo', 'allContacts', 'allUsers', 'contactPerson'));
     }
 
@@ -44,10 +42,17 @@ class UserController extends Controller
     }
 
     public function viewUser($id){
+        $user = DB::table('users')->where('id', $id)->first();
 
-        return view('users.view_user');
+        return view('users.view_user', compact('user'));
     }
 
+    public function deleteUserFromDB($id)  {
+        db::table('users')->where('id', $id)->delete();
+
+        return back();
+
+    }
 
     private function getCesaeInfo(){
         $cesaeInfo = [

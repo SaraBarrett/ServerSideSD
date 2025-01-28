@@ -29,7 +29,9 @@
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td> <a class="btn btn-info" href="{{route('users.view',$user->id )}}">Ver</a> </td>
+                    <td> <a class="btn btn-info" href="{{route('users.view',$user->id )}}">Ver</a>
+
+                    <a class="btn btn-danger" href="{{route('users.delete',$user->id )}}">Apagar</a></td>
 
                 </tr>
             @endforeach

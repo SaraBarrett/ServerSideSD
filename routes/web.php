@@ -20,6 +20,8 @@ Route::get('/users', [UserController:: class, 'allUsers'])->name('users.show');
 //rota que vai carregar uma blade com toda a info do user
 Route::get('/users/{id}', [UserController:: class, 'viewUser'])->name('users.view');
 
+Route::get('/delete-user/{id}', [UserController:: class, 'deleteUserFromDB'])->name('users.delete');
+
 Route::get('/add-users', [UserController:: class, 'addUsers'])->name('users.add');
 
 //rota com paramentros
