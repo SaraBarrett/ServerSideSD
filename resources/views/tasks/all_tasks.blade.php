@@ -9,6 +9,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Descrição</th>
                 <th scope="col">Pessoa Responsável</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,11 @@
                     <td>{{ $task->name }}</td>
                     <td>{{ $task->description }}</td>
                     <td>{{ $task->username }}</td>
+
+                    <td> <a class="btn btn-info" href="{{ route('tasks.view', $task->id) }}">Ver</a>
+
+                        <a class="btn btn-danger" href="{{ route('tasks.delete', $task->id) }}">Apagar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

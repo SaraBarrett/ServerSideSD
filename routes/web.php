@@ -31,6 +31,10 @@ Route::get('/hello/{name}', function($name){
 
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.all');
 
+Route::get('/view-task/{id}', [TaskController:: class, 'viewTask'])->name('tasks.view');
+
+Route::get('/delete-task/{id}', [TaskController:: class, 'deleteTaskFromDB'])->name('tasks.delete');
+
 //rota fallback: cai aqui quando não encontra nenhuma rota com o url solicitado no frontend
 Route::fallback(function(){
     return view('fallback');

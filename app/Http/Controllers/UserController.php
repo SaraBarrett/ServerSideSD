@@ -48,6 +48,7 @@ class UserController extends Controller
     }
 
     public function deleteUserFromDB($id)  {
+        db::table('tasks')->where('user_id', $id)->delete();
         db::table('users')->where('id', $id)->delete();
 
         return back();
