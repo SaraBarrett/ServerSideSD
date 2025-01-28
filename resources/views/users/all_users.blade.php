@@ -1,7 +1,7 @@
 @extends('layouts.fo_layout')
 @section('content')
     @if (session('message'))
-        <div class="alert alert-sucess">
+        <div class="alert alert-success">
             {{ session('message') }}
         </div>
     @endif
