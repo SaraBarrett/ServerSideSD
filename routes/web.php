@@ -16,8 +16,11 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 //rota para no futuro carregar uma tabela com todos os users
 Route::get('/users', [UserController:: class, 'allUsers'])->name('users.show');
 
-Route::get('/add-users', [UserController:: class, 'addUsers'])->name('users.add');
 
+//rota que vai carregar uma blade com toda a info do user
+Route::get('/users/{id}', [UserController:: class, 'viewUser'])->name('users.view');
+
+Route::get('/add-users', [UserController:: class, 'addUsers'])->name('users.add');
 
 //rota com paramentros
 Route::get('/hello/{name}', function($name){

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +16,7 @@ class UserController extends Controller
         $contactPerson= DB::table('users')->where('name','Bruno')->first();
         $this->deleteUser(8);
 
+        $userType = User::USER_ADMIN;
 
         //função para inserir um user na bd. corre quando chamamos a rota cuja presente função está associada
         //$this->insertUserIntoDB();
@@ -40,6 +42,12 @@ class UserController extends Controller
 
         return response()->json('utilizador inserido');
     }
+
+    public function viewUser($id){
+
+        return view('users.view_user');
+    }
+
 
     private function getCesaeInfo(){
         $cesaeInfo = [
