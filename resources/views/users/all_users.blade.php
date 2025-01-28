@@ -1,5 +1,10 @@
 @extends('layouts.fo_layout')
 @section('content')
+    @if (session('message'))
+        <div class="alert alert-sucess">
+            {{ session('message') }}
+        </div>
+    @endif
     <h1>Aqui vês todos os utilizadores</h1>
 
     <h6>O contacto é {{ $contactPerson->name }} e o contacto é {{ $contactPerson->email }} </h6>
@@ -29,9 +34,10 @@
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td> <a class="btn btn-info" href="{{route('users.view',$user->id )}}">Ver</a>
+                    <td> <a class="btn btn-info" href="{{ route('users.view', $user->id) }}">Ver</a>
 
-                    <a class="btn btn-danger" href="{{route('users.delete',$user->id )}}">Apagar</a></td>
+                        <a class="btn btn-danger" href="{{ route('users.delete', $user->id) }}">Apagar</a>
+                    </td>
 
                 </tr>
             @endforeach

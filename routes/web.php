@@ -24,6 +24,8 @@ Route::get('/delete-user/{id}', [UserController:: class, 'deleteUserFromDB'])->n
 
 Route::get('/add-users', [UserController:: class, 'addUsers'])->name('users.add');
 
+Route::post('/create-user', [UserController::class, 'createUser'])->name('users.create');
+
 //rota com paramentros
 Route::get('/hello/{name}', function($name){
     return '<h1>Hello</h1>'.$name;
