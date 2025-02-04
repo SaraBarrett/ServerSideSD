@@ -17,7 +17,10 @@
             <li>{{ $item['id'] }} - {{ $item['name'] }}- {{ $item['phone'] }}</li>
         @endforeach
     </ul>
-
+    <form action="">
+        <input type="text" id="" name="search" value="{{ request()->query('search') }}">
+        <button type="submit" class="btn btn-secondary">Procurar</button>
+    </form>
     <table class="table">
         <thead>
             <tr>
@@ -34,7 +37,7 @@
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td> <a class="btn btn-info" href="{{ route('users.view', $user->id) }}">Ver</a>
+                    <td> <a class="btn btn-info" href="{{ route('users.view', $user->id) }}">Ver / Editar</a>
 
                         <a class="btn btn-danger" href="{{ route('users.delete', $user->id) }}">Apagar</a>
                     </td>

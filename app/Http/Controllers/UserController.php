@@ -14,6 +14,17 @@ class UserController extends Controller
         $cesaeInfo = $this->getCesaeInfo();
         $allContacts = $this->getContacts();
 
+        //pesquisa quando existe o campo preenchido
+        //modo simples
+        // if(request()->query('search')){
+        //     $search =request()->query('search');
+        // }else{
+        //     $search =null;
+        // }
+
+
+
+
         $contactPerson= DB::table('users')->where('name','Bruno')->first();
         $this->deleteUser(8);
 
@@ -23,7 +34,11 @@ class UserController extends Controller
         //$this->insertUserIntoDB();
 
         $this->updateUserAtDB();
-        $allUsers = $this->getAllUsersFromDB();
+
+         //com ternário
+         $search = request()->query('search')? request()->query('search') : null;
+
+        $allUsers = $this->getAllUsersFromDB($search);
         return view('users.all_users', compact('cesaeInfo', 'allContacts', 'allUsers', 'contactPerson'));
     }
 
@@ -32,21 +47,41 @@ class UserController extends Controller
     }
 
     public function createUser(Request $request){
-        $request->validate([
-            'name' => 'required|string|min:3',
-            'email' =>'required|email|unique:users',
-            'password' =>'required|min:8'
-        ]);
+        //é um update
+        if(isset( $request->id)){
+            $request->validate([
+                'name' => 'required|string|min:3',
+                'address' =>'max:100',
+                'nif' =>'max:15'
+            ]);
 
-        User::insert(
-            [
+            User::where('id',  $request->id)
+            ->update([
                 'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
+                    'nif' => $request->nif,
+                    'address' => $request->address
+            ]);
 
-        ]);
+            return redirect()->route('users.show')->with('message', 'User actualizado com sucesso');
+        }else{
 
-        return redirect()->route('users.show')->with('message', 'User adicionado com sucesso');
+            $request->validate([
+                'name' => 'required|string|min:3',
+                'email' =>'required|email|unique:users',
+                'password' =>'required|min:8'
+            ]);
+
+            User::insert(
+                [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+
+            ]);
+
+            return redirect()->route('users.show')->with('message', 'User adicionado com sucesso');
+        }
+
 
     }
 
@@ -106,11 +141,17 @@ class UserController extends Controller
         ]);
     }
 
-    protected function getAllUsersFromDB(){
+    protected function getAllUsersFromDB($search){
 
-        $users = Db::table('users')
-                ->select('name', 'email', 'password', 'id')
-                ->get();
+        $users = Db::table('users');
+
+        if($search){
+            $users = $users
+                ->where('name', 'like', "%{$search}%")
+                ->orWhere('email', $search);
+        }
+        $users=$users->select('name', 'email', 'password', 'id')
+        ->get();
 
 
         return $users;
