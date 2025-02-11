@@ -24,6 +24,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Photo</th>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
@@ -34,12 +35,18 @@
 
             @foreach ($allUsers as $user)
                 <tr>
+                    <td><img style="width:50px; height:50px"
+                            src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('images/nophoto.jpg') }}"
+                            alt=""></td>
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td> <a class="btn btn-info" href="{{ route('users.view', $user->id) }}">Ver / Editar</a>
-
-                        <a class="btn btn-danger" href="{{ route('users.delete', $user->id) }}">Apagar</a>
+                        @auth
+                            @if (Auth::user()->email == 'admin@gmail.com')
+                                <a class="btn btn-danger" href="{{ route('users.delete', $user->id) }}">Apagar</a>
+                            @endif
+                        @endauth
                     </td>
 
                 </tr>

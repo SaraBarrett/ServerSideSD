@@ -1,6 +1,9 @@
 @extends('layouts.fo_layout')
 @section('content')
-    <h5>Olá estou na rua.</h5>
+    @auth
+        <h5>Olá {{ Auth::user()->name }}</h5>
+    @endauth
+
     <h6>{{ $myVar }}</h6>
     <h6>{{ $contactInfo['nome'] }}</h6>
 
@@ -8,6 +11,6 @@
     <ul>
         <li><a href="{{ route('users.show') }}">Todos os users</a></li>
         <li><a href="{{ route('users.add') }}">Adicionar Utilizador</a></li>
-        <li><a  href="{{route('tasks.all')}}">Todas as Tarefas</a></li>
+        <li><a href="{{ route('tasks.all') }}">Todas as Tarefas</a></li>
     </ul>
 @endsection

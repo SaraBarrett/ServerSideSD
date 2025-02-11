@@ -1,7 +1,7 @@
 @extends('layouts.fo_layout')
 
 @section('content')
-    <form action="{{ route('users.create') }}" method="POST">
+    <form action="{{ route('users.create') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id" value="{{ $user->id }}">
         <div class="mb-3">
@@ -36,6 +36,12 @@
                 erro nif
             @enderror
         </div>
+        <div class="mb-5">
+            <input type="file" name="photo" accept="image/">
+        </div>
+        @error('photo')
+            erro photo
+        @enderror
         <button type="submit" class="btn btn-primary">Actualizar</button>
     </form>
 @endsection

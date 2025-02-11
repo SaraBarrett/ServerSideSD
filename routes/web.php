@@ -31,7 +31,7 @@ Route::get('/hello/{name}', function($name){
     return '<h1>Hello</h1>'.$name;
 });
 
-Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.all');
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.all')->middleware('auth');
 
 Route::get('/view-task/{id}', [TaskController:: class, 'viewTask'])->name('tasks.view');
 
