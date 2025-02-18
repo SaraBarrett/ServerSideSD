@@ -12,9 +12,9 @@ class APITaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : TaskResourceCollection
+    public function index()
     {
-        return new TaskResourceCollection(resource: Task::paginate());
+        return Task::paginate();
     }
 
     /**
